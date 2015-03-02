@@ -17,7 +17,7 @@ Works with `ActiveRecord` 3+.
 
 1. Add PostallyAddressable to your `Gemfile`.
 
-    `gem 'postally_addressable', :git => 'git://github.com/mariusz360/postally_addressable.git'
+    `gem 'postally_addressable', :git => 'git://github.com/mariusz360/postally_addressable.git'`
 
 2. Generate a migration which will add a `postal_addresses` table to your database.
 
@@ -31,13 +31,13 @@ Works with `ActiveRecord` 3+.
 
 ## Usage
 
-``ruby
+```ruby
 class User < ActiveRecord::Base
   has_postal_address
 end
 ```
 
-``ruby
+```ruby
 >> user = User.new         # initializes user, then initializes postal address
 >> user.postal_address     # #<PostalAddress id: nil, ...>
 
@@ -80,5 +80,3 @@ end
 >> geocoded_result = Geocoder.search(user.mailing_address).first
 >> user.update(latitude: geocoded_result.latitude, longitude: geocoded_result.latitude)
 ```
-
-

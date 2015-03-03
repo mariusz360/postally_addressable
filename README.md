@@ -83,6 +83,6 @@ end
 ### Caveats
 
  * The postal address attributes available in the postally addressable object behave as methods. Therefore, `obj.as_json(only: :address_line_1)` would return an empty hash. Instead, do `obj.as_json(methods: :address_line_1)`.
- * `has_postal_address` adds a default scope to the postally_addressable model to eager load the postal addresses. This can be turned off by passing `eager_load: false` to `has_postal_address`.
+ * `has_postal_address` adds a default scope to the postally addressable model to eager load the postal addresses. This can be turned off by passing `eager_load: false` to `has_postal_address`.
 
 

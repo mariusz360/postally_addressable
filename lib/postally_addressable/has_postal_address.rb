@@ -7,12 +7,17 @@ module PostallyAddressable
 
     module ClassMethods
       def has_postal_address(options = {})
-        send :include, InstanceMethods
+        # default options
+        options = { 
+          eager_load: true
+        }.merge(options)
 
-        has_one :postal_address, :as => :postally_addressable, :autosave => true
+        if options[:eager_load]
+          default_scope { includes(:postal_address) }
+        end
 
-        after_initialize :find_or_initialize_postal_address
-
+        has_one :postal_address, as: :postally_addressable, autosave: true, dependent: :destroy
+        
         # getters
         delegate *PostalAddress::DELEGATABLE_ATTRIBUTES.map{ |a| a.to_sym }, to: :postal_address
 
@@ -25,20 +30,23 @@ module PostallyAddressable
         # methods
         delegate *PostalAddress::DELEGATABLE_METHODS.map{ |m| m.to_sym }, to: :postal_address
 
-        # methods- prefixed with "postal_address_"
+        # prefixed methods
         delegate *PostalAddress::PREFIXED_DELEGATABLE_METHODS.map{ |m| m.to_sym }, to: :postal_address, prefix: true
 
-        def postal_addresses
-          PostalAddress.of_type(model_name.name)
-        end
+        send :include, InstanceMethods
       end
     end
 
     module InstanceMethods
-      def find_or_initialize_postal_address
-        self.postal_address ||= PostalAddress.new({
-          postally_addressable: self
-        })
+
+      def postal_address
+        if super
+          super
+        else
+          self.postal_address = PostalAddress.new({
+            postally_addressable: self
+          })
+        end
       end
 
       def initialize(*args)

@@ -1,6 +1,6 @@
-# PostallyAddressable (Beta)
+# PostallyAddressable
 
-PostallyAddressable lets you add postal addresses to your models. The postal addresses are all saved in one place using polymorphism, so you don't have to create additional columns when tracking a new model's address. You also have the ability to save the latitude, longitude, and time zone to the postal address if your application requires that data. PostallyAddressable still requires proper documentation and tests.
+PostallyAddressable lets you add postal addresses to your models. The postal addresses are all saved in one place using polymorphism, so you don't have to create additional columns when tracking a new model's address. You can also save the latitude, longitude, and time zone to the postal address if your application requires that information.
 
 ## Todo
 
@@ -76,7 +76,9 @@ end
 >> user.mailing_address    # "123 Mission St Apt 2, San Francisco California 94105, USA"
 
 # if you need the geocoordinates, you can save them to the postal address as well
-# the following example uses the Geocoder gem
 >> geocoded_result = Geocoder.search(user.mailing_address).first
 >> user.update(latitude: geocoded_result.latitude, longitude: geocoded_result.latitude)
 ```
+
+### Caveats
+PostallyAddressable is 

@@ -18,12 +18,15 @@ class PostalAddress < ActiveRecord::Base
   )
 
   ##
-   # These methods are accessible from the postally_addressable object
+   # Methods accessible from the postally_addressable object
    #
   DELEGATABLE_METHODS = %w(
     mailing_address
   )
-  # Same, but with the "postal_address_" prefix
+
+  ##
+   # Methods accessible from the postally_addressable object with the "postal_address_" prefix
+   # 
   PREFIXED_DELEGATABLE_METHODS = %w(
     changed?
     attributes

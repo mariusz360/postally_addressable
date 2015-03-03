@@ -38,7 +38,6 @@ module PostallyAddressable
     end
 
     module InstanceMethods
-
       def postal_address
         return super if super
         self.postal_address = PostalAddress.new({

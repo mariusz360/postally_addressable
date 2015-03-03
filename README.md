@@ -41,46 +41,48 @@ end
 >> user = User.new         # initializes user, then initializes postal address
 >> user.postal_address     # #<PostalAddress id: nil, ...>
 
-# Set the user's address
+>> # Set the user's address
 >> user.address_line_1 = "123 Mission St"
 
-# Set the user's apt/suite/building
+>> # Set the user's apt/suite/building
 >> user.address_line_2 = "Apt 2"
 
-# Set the user's locality
+>> # Set the user's locality
 >> user.locality = "San Francisco"
 
-# you can use city in place of locality
+>> # you can use 'city' instead of 'locality'
 >> user.city               # "San Francisco"
 
-# you can use state and province interchangeably
+>> # 'state' and 'province' mean the same thing
 >> user.state = "California"
 >> user.province           # "California"
 
-# set the postal code
+>> # set the postal code
 >> user.postal_code = "94105"
 
-# check that an attribute isn't empty
+>> # check that an attribute isn't empty
 >> user.country?           # false
 >> user.country = "USA"
 >> user.country?           # true
 
-# saving the time zone is sometimes very useful
+>> # saving the time zone is sometimes very useful
 >> user.time_zone_name = "Pacific Time (US & Canada)"
 
-# save user
+>> # save user
 >> user.save               # autosaves postal address
 >> user.postal_address.id  # 1
 
-# get the user's complete mailing address
+>> # get the user's complete mailing address
 >> user.mailing_address    # "123 Mission St Apt 2, San Francisco California 94105, USA"
 
-# if you need the geocoordinates, you can save them to the postal address as well
+>> # if you need the geocoordinates, you can save them to the postal address as well
 >> geocoded_result = Geocoder.search(user.mailing_address).first
 >> user.update(latitude: geocoded_result.latitude, longitude: geocoded_result.latitude)
 ```
 
 ### Caveats
-PostallyAddressable 
+
+ * The postal address attributes available in the postally addressable object behave as methods. Therefore, `obj.as_json(only: :address_line_1)` would return an empty hash. Instead, do `obj.as_json(methods: :address_line_1)`.
+ * `has_postal_address` adds a default scope to the postally_addressable model to eager load the postal addresses. This can be turned off by passing `eager_load: false` to `has_postal_address`.
 
 

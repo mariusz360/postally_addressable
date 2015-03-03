@@ -40,13 +40,10 @@ module PostallyAddressable
     module InstanceMethods
 
       def postal_address
-        if super
-          super
-        else
-          self.postal_address = PostalAddress.new({
-            postally_addressable: self
-          })
-        end
+        return super if super
+        self.postal_address = PostalAddress.new({
+          postally_addressable: self
+        })
       end
 
       def initialize(*args)

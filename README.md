@@ -4,8 +4,8 @@ PostallyAddressable lets you add postal addresses to your models. The postal add
 
 ## Todo
 
- * Documentation (usage and caveats)
- * Tests
+ * Documentation
+ * Tests (for 'has_postal_address models')
 
 ## Compatibility
 

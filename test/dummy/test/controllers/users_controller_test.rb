@@ -1,10 +1,7 @@
 require 'test_helper'
 
-class NavigationTest < ActionDispatch::IntegrationTest
-  fixtures :all
-
+class UsersControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end
 end
-

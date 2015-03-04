@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 20150302155312) do
 
   create_table "rentals", :force => true do |t|
     t.integer  "user_id"
-    t.string   "email"
+    t.string   "title"
   end
 
   add_index "rentals", ["user_id"], name: "index_rental_on_user_id", using: :btree

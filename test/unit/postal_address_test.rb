@@ -70,7 +70,7 @@ class PostalAddressTest < ActiveSupport::TestCase
     end
 
     should "read locality query method" do
-      assert_equal true, @postal_address.city?
+      assert @postal_address.city?
     end
   end
 
@@ -85,7 +85,7 @@ class PostalAddressTest < ActiveSupport::TestCase
     end
 
     should "read province query method" do
-      assert_equal true, @postal_address.state?
+      assert @postal_address.state?
     end
   end
 

@@ -7,8 +7,8 @@ class ControllerTest < ActionController::TestCase
     post :create, :user => { :name => 'Mariusz', :email => 'mariusz@example.com', :address_line_1 => '123 Mission St' }
     user = assigns(:user)
     postal_address = user.postal_address
-    assert_equal true, user.id?
-    assert_equal true, postal_address.id?
+    assert_equal user.id?
+    assert_equal postal_address.id?
     assert_equal '123 Mission St', postal_address.address_line_1
   end
 

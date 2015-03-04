@@ -11,20 +11,20 @@ class PostallyAddressableTest < ActiveSupport::TestCase
 
   test 'created if postally_addressable created' do
     user = User.create
-    assert_equal true, user.postal_address.id?
+    assert user.postal_address.id?
   end
 
   test 'updated if postally_addressable created' do
     user = User.create
-    assert_equal true, user.postal_address.id?
+    assert user.postal_address.id?
     user.update_attributes(:address_line_1 => "123 Mission St")
     assert_equal "123 Mission St", user.postal_address.address_line_1
   end
 
   test 'destroyed if postally_addressable destroyed' do
     user = User.create
-    assert_equal true, user.postal_address.id?
+    assert user.postal_address.id?
     user.destroy
-    assert_equal true, user.postal_address.destroyed?
+    assert user.postal_address.destroyed?
   end
 end

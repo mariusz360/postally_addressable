@@ -7,8 +7,8 @@ class ControllerTest < ActionController::TestCase
     post :create, :user => { :name => 'Mariusz', :email => 'mariusz@example.com', :address_line_1 => '123 Mission St' }
     user = assigns(:user)
     postal_address = user.postal_address
-    assert_equal user.id?
-    assert_equal postal_address.id?
+    assert user.id?
+    assert postal_address.id?
     assert_equal '123 Mission St', postal_address.address_line_1
   end
 
@@ -24,8 +24,8 @@ class ControllerTest < ActionController::TestCase
   test 'destroy' do
     create_user_with_postal_address
     delete :destroy, :id => @user.id
-    assert_equal false, User.exists?(id: @user.id)
-    assert_equal false, PostalAddress.exists?(id: @postal_address.id)
+    assert_not User.exists?(id: @user.id)
+    assert_not PostalAddress.exists?(id: @postal_address.id)
   end
 
   def create_user_with_postal_address
